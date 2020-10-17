@@ -6,6 +6,7 @@ use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Service;
+use Illuminate\Validation\Rule;
 
 class ServiceController extends Controller
 {
@@ -63,7 +64,7 @@ class ServiceController extends Controller
     {
         $categories = Category::all();
 
-        return view('dashboard.services.edit', compact('job','categories'));
+        return view('dashboard.services.edit', compact('service','categories'));
     }
 
         /**
@@ -94,7 +95,7 @@ class ServiceController extends Controller
 
         session()->flash('success', __('site.updated_successfully'));
 
-        return redirect()->route('dashboard.jobs.index');
+        return redirect()->route('dashboard.services.index');
     }
 
     public function destroy(Service $service)
@@ -104,6 +105,6 @@ class ServiceController extends Controller
 
         session()->flash('success', __('site.deleted_successfully'));
 
-        return redirect()->route('dashboard.jobs.index');
+        return redirect()->route('dashboard.services.index');
     } 
 }

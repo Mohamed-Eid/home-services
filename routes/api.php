@@ -24,8 +24,6 @@ Route::group(
     ['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]],
     function(){
         Route::prefix('api')->name('api.')->middleware(['api'])->group(function(){
-            Route::get('test','ClientController@get_client');
-
 
             Route::group(['prefix' => 'clients'], function () {
                 Route::post('register','ClientController@register_client');
@@ -62,8 +60,7 @@ Route::group(
             Route::get('categories/{category}' , 'CategoryController@products');
             Route::get('categories/{category}/vendors' , 'CategoryController@vendors')->name('vendors_by_cat');
             
-            Route::get('v2/categories/' , 'CategoryController@categories');
-            Route::get('v2/categories/{category}' , 'CategoryController@products');
+
 
 
 

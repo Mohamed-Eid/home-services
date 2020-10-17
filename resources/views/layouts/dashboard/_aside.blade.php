@@ -25,6 +25,10 @@
 
             <li><a href="{{ route('dashboard.plans.index') }}"><i class="fa fa-truck"></i><span>@lang('site.plans')</span></a></li>
 
+            <li><a href="{{ route('dashboard.services.index') }}"><i class="fa fa-truck"></i><span>@lang('site.services')</span></a></li>
+
+            <li><a href="{{ route('dashboard.jobs.index') }}"><i class="fa fa-truck"></i><span>@lang('site.jobs')</span></a></li>
+
 
             @if(auth()->user()->hasPermission('read_categories'))
             <li><a href="{{ route('dashboard.categories.index') }}"><i class="fa  fa-cube"></i><span>@lang('site.categories')</span></a></li>

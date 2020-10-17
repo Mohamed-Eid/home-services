@@ -15,4 +15,9 @@ class Service extends Model
     {
         return $this->belongsToMany(Agent::class)->withTimestamps();
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

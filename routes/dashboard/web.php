@@ -14,6 +14,10 @@ Route::group(
 
             Route::resource('/plans','PlanController');
 
+            Route::resource('/jobs','JobController');
+
+            Route::resource('/services','ServiceController');
+
 
             Route::resource('/clients','ClientController');
            

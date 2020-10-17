@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Job;
+use Illuminate\Validation\Rule;
 
 class JobController extends Controller
 {
