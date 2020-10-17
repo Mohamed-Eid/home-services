@@ -8,24 +8,20 @@ class City extends Model
 {
     use \Dimsav\Translatable\Translatable;
 
-    public $translatedAttributes = ['name','currency'];
+    public $translatedAttributes = ['name'];
     protected $guarded = [];
-    protected  $appends = ['image_path'];
 
-     protected $hidden = ['created_at' , 'updated_at', 'translations'];
-
-    public function districts()
+    public function country()
     {
-        return $this->hasMany(District::class);
+        return $this->belongsTo(Country::class);
     }
 
-    public function products()
-    {
-        return $this->hasMany(Product::class);
+    public function agents(){
+        return $this->hasMany(Agent::class);
     }
-    
-    public  function getImagePathAttribute(){
-        return asset('uploads/city_images/'.$this->image);
+
+    public function clients(){
+        return $this->hasMany(Client::class);
     }
+
 }
- 

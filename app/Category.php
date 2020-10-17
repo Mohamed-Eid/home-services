@@ -13,17 +13,6 @@ class Category extends Model
     protected  $appends = ['image_path'];
 
 
-
-    public function products()
-    {
-        return $this->hasMany(Product::class);
-    }
-
-    public function vendors()
-    {
-        return $this->hasMany(Vendor::class);
-    }
-
     public function ScopeParent($query){
         return $query->where('parent_id',0);
     }
@@ -40,5 +29,13 @@ class Category extends Model
 
     public  function getImagePathAttribute(){
         return asset('uploads/category_images/'.$this->image);
+    }
+
+    public function jobs(){
+        return $this->hasMany(Job::class);
+    }
+
+    public function services(){
+        return $this->hasMany(Service::class); 
     }
 }

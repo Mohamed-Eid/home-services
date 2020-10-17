@@ -4,15 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Service extends Model
+class Country extends Model
 {
     use \Dimsav\Translatable\Translatable;
 
     public $translatedAttributes = ['name'];
     protected $guarded = [];
-    
-    public function agents()
-    {
-        return $this->belongsToMany(Agent::class)->withTimestamps();
+
+    public function cities(){
+        return $this->hasMany(City::class);
     }
 }

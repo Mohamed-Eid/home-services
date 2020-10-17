@@ -34,7 +34,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::parent()->get();
+        $categories = Category::all();
         return view('dashboard.categories.create',compact('categories'));
     }
 

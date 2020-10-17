@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateServiceTranslationsTable extends Migration
+class CreateCountryTranslationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,18 @@ class CreateServiceTranslationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('service_translations', function (Blueprint $table) {
+        Schema::create('country_translations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('service_id')->unsigned();
+            $table->integer('country_id')->unsigned();
             $table->string('name');
             $table->string('locale')->index();
-            $table->unique(['service_id','locale']);
-            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
+            $table->unique(['country_id','locale']);
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }
 
-    
     /**
      * Reverse the migrations.
      *
@@ -32,6 +32,6 @@ class CreateServiceTranslationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('service_translations');
+        Schema::dropIfExists('country_translations');
     }
 }
