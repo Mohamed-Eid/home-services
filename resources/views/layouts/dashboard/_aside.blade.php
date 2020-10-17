@@ -23,6 +23,9 @@
 
             <li><a href="{{ route('dashboard.countries.index') }}"><i class="fa fa-truck"></i><span>@lang('site.cities')</span></a></li>
 
+            <li><a href="{{ route('dashboard.plans.index') }}"><i class="fa fa-truck"></i><span>@lang('site.plans')</span></a></li>
+
+
             @if(auth()->user()->hasPermission('read_categories'))
             <li><a href="{{ route('dashboard.categories.index') }}"><i class="fa  fa-cube"></i><span>@lang('site.categories')</span></a></li>
             @endif

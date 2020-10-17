@@ -12,6 +12,9 @@ Route::group(
             Route::resource('users' , 'UserController');
             Route::resource('/categories','CategoryController');
 
+            Route::resource('/plans','PlanController');
+
+
             Route::resource('/clients','ClientController');
            
            
