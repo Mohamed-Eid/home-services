@@ -21,9 +21,7 @@
             <li><a href="{{ route('dashboard.users.index') }}"><i class="fa fa-users"></i><span>@lang('site.users')</span></a></li>
             @endif
 
-            @if(auth()->user()->hasPermission('read_cities'))
-            <li><a href="{{ route('dashboard.cities.index') }}"><i class="fa fa-truck"></i><span>@lang('site.cities')</span></a></li>
-            @endif
+            <li><a href="{{ route('dashboard.countries.index') }}"><i class="fa fa-truck"></i><span>@lang('site.cities')</span></a></li>
 
             @if(auth()->user()->hasPermission('read_categories'))
             <li><a href="{{ route('dashboard.categories.index') }}"><i class="fa  fa-cube"></i><span>@lang('site.categories')</span></a></li>

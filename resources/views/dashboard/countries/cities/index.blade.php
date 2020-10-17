@@ -21,16 +21,16 @@
 
             <div class="box box-primary">
                 <div class="box-header with-border">
-                <h3 class="box-title" style="margin-bottom: 10px;">{{ $city->name }}
+                <h3 class="box-title" style="margin-bottom: 10px;">{{ $country->name }}
                     </h3>
                 </div>
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-6">
-                            @include('dashboard.cities.districts.create' ,  ['city' => $city])
+                            @include('dashboard.countries.cities.create' ,  ['country' => $country])
                         </div>
                         <div class="col-md-6">
-                            @include('dashboard.cities.districts.show' , ['districts' => $city->districts()->paginate(3)])
+                            @include('dashboard.countries.cities.show' , ['cities' => $country->cities()->paginate(3)])
                         </div>
                     </div>
 

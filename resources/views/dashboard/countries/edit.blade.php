@@ -12,7 +12,7 @@
             <ol class="breadcrumb">
                 <li><a href="{{route('dashboard.index')}}"><i class="fa fa-dashboard"></i> @lang('site.dashboard')</a>
                 </li>
-                <li><a href="{{route('dashboard.cities.index')}}">@lang('site.cities')</a></li>
+                <li><a href="{{route('dashboard.countries.index')}}">@lang('site.countries')</a></li>
                 <li class="active"></i> @lang('site.update')</li>
             </ol>
         </section>
@@ -26,34 +26,15 @@
                 <div class="box-body">
 
                     @include('partials._errors')
-                    <form action="{{ route('dashboard.cities.update' , $city->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('dashboard.countries.update' , $country->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         @foreach(config('translatable.locales') as $locale)
                             <div class="form-group">
                                 <label>@lang('site.'.$locale.'.name')</label>
-                                <input type="text" name="{{$locale}}[name]" class="form-control" value="{{ $city->translate($locale)->name }}" >
-                            </div>
-                            <div class="form-group">
-                                <label>@lang('site.'.$locale.'.currency')</label>
-                                <input type="text" name="{{$locale}}[currency]" class="form-control" value="{{ $city->translate($locale)->currency }}" >
+                                <input type="text" name="{{$locale}}[name]" class="form-control" value="{{ $country->translate($locale)->name }}" >
                             </div>
                         @endforeach
-
-                        <div class="form-group">
-                            <label>@lang('site.code')</label>
-                            <input type="text" name="code" class="form-control" value="{{ $city->code }}" >
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>@lang('site.image')</label>
-                            <input type="file" name="image" class="form-control image">
-                        </div>
-
-                        <div class="form-group">
-                            <img src="{{ $city->image_path }}"
-                                 class="img-thumbnail image-preview" style="width: 100px;">
-                        </div>
 
                         <div class="form-group">
                             <button class="btn btn-primary" type="submit"><i class="fa fa-plus"></i>@lang('site.edit')

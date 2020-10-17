@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard\City;
+namespace App\Http\Controllers\Dashboard\Country;
 
 use App\City;
-use App\District;
+use App\Country;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
 
-class DistrictController extends Controller
+class CityController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(City $city)
+    public function index(Country $country)
     {
-        return view('dashboard.cities.districts.index' , compact('city'));
+        return view('dashboard.countries.cities.index' , compact('country'));
     }
 
     /**
@@ -36,21 +36,21 @@ class DistrictController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request , City $city)
+    public function store(Request $request , Country $country)
     {
         $rules = [];
 
         foreach (config('translatable.locales') as $locale){
-            $rules += [$locale.'.name' => ['required' ,Rule::unique('detail_translations','name')]];
+            $rules += [$locale.'.name' => ['required' ,Rule::unique('city_translations','name')]];
         }
 
         $request->validate($rules);
 
-        $city->districts()->create($request->all());
+        $country->cities()->create($request->all());
 
         session()->flash('success', __('site.added_successfully'));
 
-        return redirect()->route('dashboard.cities.districts.index',['city' => $city]);
+        return redirect()->route('dashboard.countries.cities.index',['country' => $country]);
     }
 
     /**
@@ -59,7 +59,7 @@ class DistrictController extends Controller
      * @param  \App\District  $district
      * @return \Illuminate\Http\Response
      */
-    public function show(District $district)
+    public function show(Country $country)
     {
         //
     }
@@ -70,7 +70,7 @@ class DistrictController extends Controller
      * @param  \App\District  $district
      * @return \Illuminate\Http\Response
      */
-    public function edit(District $district)
+    public function edit(Country $country)
     {
         //
     }
@@ -82,7 +82,7 @@ class DistrictController extends Controller
      * @param  \App\District  $district
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, District $district)
+    public function update(Request $request, City $city)
     {
         //
     }
@@ -93,12 +93,12 @@ class DistrictController extends Controller
      * @param  \App\District  $district
      * @return \Illuminate\Http\Response
      */
-    public function destroy(City $city ,District $district)
+    public function destroy(Country $country ,City $city)
     {
-        $district->delete();
+        $city->delete();
 
         session()->flash('success', __('site.deleted_successfully'));
 
-        return redirect()->route('dashboard.cities.districts.index',['city' => $city]);
+        return redirect()->route('dashboard.countries.cities.index',['country' => $country]);
     }
 }

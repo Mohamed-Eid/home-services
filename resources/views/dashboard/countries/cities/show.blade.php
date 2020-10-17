@@ -7,26 +7,24 @@
         </div>
         <div class="box-body">
 
-            @if($districts->count() > 0)
+            @if($cities->count() > 0)
                 <table class="table table-bordered">
                     <thead>
                     <tr>
                         <th style="width: 10px">#</th>
                         <th>@lang('site.name')</th>
-                        <th>@lang('site.delivered_cost')</th>
                         <th>@lang('site.action')</th>
                     </tr>
                     </thead>
 
                     <tbody>
-                    @foreach($districts as $index => $district)
+                    @foreach($cities as $index => $city)
                         <tr>
                             <td>{{ $index +1 }}</td>
-                            <td>{{ $district->name }}</td>
-                            <td>{{ $district->delivered_cost }}</td>
+                            <td>{{ $city->name }}</td>
                             <td>
                                 <form method="post"
-                                    action="{{route('dashboard.cities.districts.destroy' , ['city'=>$district->city->id,'district'=>$district->id])}}"
+                                    action="{{route('dashboard.countries.cities.destroy' , ['country'=>$city->country->id,'city'=>$city->id])}}"
                                     style="display: inline-block">
                                     @csrf()
                                     @method('delete')
@@ -39,7 +37,7 @@
                     </tbody>
 
                 </table>
-                {{ $districts->appends(request()->query())->links() }}
+                {{ $cities->appends(request()->query())->links() }}
 
             @else
                 <h2>@lang('site.no_data_found')</h2>

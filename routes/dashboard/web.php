@@ -11,52 +11,17 @@ Route::group(
             //user routes
             Route::resource('users' , 'UserController');
             Route::resource('/categories','CategoryController');
-            Route::resource('/vendors','VendorsController');
-            Route::resource('/products','ProductController');
+
             Route::resource('/clients','ClientController');
-            Route::resource('orders','OrderController');
            
-            Route::get('tafsil','OrderController@tafsil');
            
             Route::resource('/times','DeliveryTimeController');
             
             Route::resource('/banks','BankController');
-            Route::get('sales','SaleController@index')->name('sales.index');
             
-            Route::get('notifications','NotificationController@index')->name('notifications.index');
-            Route::post('notifications','NotificationController@send')->name('notifications.send');
 
 
-            Route::prefix('products/{product}/details')->name('products.details.')->group(function(){
-                Route::get('','Product\DetailController@index')->name('index');
-                
-                Route::post('','Product\DetailController@upload_images')->name('upload_images');
-                Route::delete('/{image}','Product\DetailController@delete_images')->name('delete_images');
 
-                Route::post('upload_videos','Product\DetailController@upload_videos')->name('upload_videos');
-                Route::delete('upload_videos/{video}','Product\DetailController@delete_videos')->name('delete_videos');
-
-
-                Route::post('/add_sizes','Product\DetailController@add_sizes')->name('add_sizes');
-                Route::get('/edit_sizes/{size}','Product\DetailController@edit_sizes')->name('edit_sizes');
-                Route::put('/edit_sizes/{size}/update','Product\DetailController@update_sizes')->name('update_sizes');
-                Route::delete('/delete_sizes/{size}','Product\DetailController@delete_sizes')->name('delete_sizes');
-
-                Route::post('/add_special_sizes','Product\DetailController@add_special_sizes')->name('add_special_sizes');
-                Route::get('/edit_special_sizes/{size}','Product\DetailController@edit_special_sizes')->name('edit_special_sizes');
-                Route::put('/edit_special_sizes/{size}/update','Product\DetailController@update_special_sizes')->name('update_special_sizes');
-
-                Route::post('/add_colors','Product\DetailController@add_colors')->name('add_colors');
-                Route::get('/edit_colors/{color}','Product\DetailController@edit_colors')->name('edit_colors');
-                Route::put('/edit_colors/{color}/update','Product\DetailController@update_colors')->name('update_colors');
-                Route::delete('/delete_colors/{color}','Product\DetailController@delete_colors')->name('delete_colors');
-           
-                Route::post('/add_details','Product\DetailController@add_details')->name('add_details');
-                Route::get('/edit_details/{detail}','Product\DetailController@edit_details')->name('edit_details');
-                Route::put('/edit_details/{detail}/update','Product\DetailController@update_details')->name('update_details');
-                Route::delete('/delete_details/{detail}','Product\DetailController@delete_details')->name('delete_details');
-
-            });
 
             Route::prefix('coupons')->name('coupons.')->group(function(){
                 Route::get('','CouponController@index')->name('index');
@@ -67,10 +32,10 @@ Route::group(
 
             });
 
-            Route::resource('/cities','CityController');
+            Route::resource('countries','CountryController');
             //Route::resource('products.details.custom_details','Product\DetailController');
             Route::resource('products.details.subdetails','Product\Detail\SubdetailController');
-            Route::resource('cities.districts','City\DistrictController');
+            Route::resource('countries.cities','Country\CityController');
             
             Route::get('about','AboutController@about_us')->name('abouts');
             Route::put('about','AboutController@update')->name('abouts.update');

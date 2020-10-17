@@ -7,7 +7,7 @@
         <div class="box-body">
 
             @include('partials._errors')
-            <form action="{{ route('dashboard.cities.districts.store' , $city) }}" method="post">
+            <form action="{{ route('dashboard.countries.cities.store' , $country) }}" method="post">
 
                 @csrf
 
@@ -18,11 +18,6 @@
                     <input type="text" name="{{$locale}}[name]" class="form-control" value="{{ old($locale.'.name') }}" >
                 </div>
                 @endforeach
-
-                <div class="form-group">
-                    <label>@lang('site.delivered_cost')</label>
-                    <input type="text" name="delivered_cost" class="form-control" value="{{ old('delivered_cost') }}" >
-                </div>
 
                 <div class="form-group">
                     <button class="btn btn-primary" type="submit"><i class="fa fa-plus"></i>@lang('site.add')
