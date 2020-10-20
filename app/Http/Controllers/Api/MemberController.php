@@ -96,7 +96,7 @@ class MemberController extends Controller
 
         return $this->ApiResponse(true , [] , __('api.update_token') , new MemberResource($member) ,200);
     }
-
+ 
     public function profile()
     {
         $member = request()->member;

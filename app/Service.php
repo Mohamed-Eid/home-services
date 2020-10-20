@@ -13,7 +13,7 @@ class Service extends Model
     
     public function agents()
     {
-        return $this->belongsToMany(Agent::class)->withTimestamps();
+        return $this->belongsToMany(Agent::class)->withTimestamps();;
     }
 
     public function category()

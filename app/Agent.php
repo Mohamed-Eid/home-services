@@ -25,11 +25,15 @@ class Agent extends Model
 
     public function services()
     {
-        return $this->hasMany(Service::class)->withTimestamps();
+        return $this->belongsToMany(Service::class)->withTimestamps();
     }
 
     public function plan(){
         return $this->belongsTo(Plan::class);
+    }
+
+    public function job(){
+        return $this->belongsTo(Job::class);
     }
     
 }

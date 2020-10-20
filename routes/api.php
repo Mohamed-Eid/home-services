@@ -41,32 +41,35 @@ Route::group(
 
 
             Route::group(['prefix' => 'agents'], function () {
-                Route::post('register','MemberController@register_member');
-                Route::post('login','MemberController@login');
-                Route::post('update_fcm_token','MemberController@update_fcm_token')->middleware('authorizemember');;
-                Route::get('profile','MemberController@profile')->middleware('authorizemember');
-                Route::post('update_profile','MemberController@update_profile')->middleware('authorizemember');;
-                Route::post('change_password','MemberController@change_password')->middleware('authorizemember');;
+                Route::post('register','AgentController@register');
+                Route::post('login','AgentController@login');
+                Route::post('update_fcm_token','AgentController@update_fcm_token')->middleware('authorizemember');;
+                Route::get('profile','AgentController@profile')->middleware('authorizemember');
+                Route::post('update_profile','AgentController@update_profile')->middleware('authorizemember');;
+                Route::post('change_password','AgentController@change_password')->middleware('authorizemember');;
             });
 
+ 
 
             Route::group(['prefix' => 'rate'], function () {
                 Route::post('' , 'RateController@rate')->middleware('authorizeclient');
             });
 
             Route::get('banks' , 'BankController@index');
+            Route::get('plans' , 'PlanController@index');
 
             Route::get('categories' , 'CategoryController@index')->name('cats');
             Route::get('categories/{category}' , 'CategoryController@products');
             Route::get('categories/{category}/vendors' , 'CategoryController@vendors')->name('vendors_by_cat');
             
+            Route::get('categories/{category}/services' , 'ServiceController@get_services_by_category');
+
+            Route::get('jobs/{job}/services' , 'ServiceController@get_services_by_job');
 
 
-
-
-            Route::group(['prefix' => 'cities'], function () {
-                Route::get('','CityController@all_cities');
-                Route::get('/{city}','CityController@get_districts_by_city_id');
+            Route::group(['prefix' => 'countries'], function () {
+                Route::get('','CountryController@index');
+                Route::get('/{country}/cities','CountryController@cities');
             });
 
             Route::get('about','AboutController@index');
