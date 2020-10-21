@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\AgentResource;
 use DateTime;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -172,5 +173,25 @@ class AgentController extends Controller
             return $this->ApiResponse(true , [] , __('api.password_changed') , [] ,200);
         }
         return $this->ApiResponse(true , [__('api.wrong_password')] , __('api.wrong_password'), [] ,200);
+    }
+
+    public function get_by_services(){
+
+        $services = [];
+        foreach ((array)request()->services as $service_id) {
+            $services[] = (int)$service_id;
+        } 
+        dd($services);
+        dd([1,2,3]);
+        $agents = Agent::whereHas('services', function($query) use ($services) {
+                    $query->whereIn('service_id', [1,2,3]);
+                })->get();
+
+        // $agents = Agent::whereHas('services', function($q) use($services) {
+        //     $q->whereIn('service_id', $services)
+        //       ->groupBy('agent_id')
+        //       ->havingRaw('COUNT(DISTINCT service_id) = '.count($services));
+        // })->get();
+        return AgentResource::collection($agents);
     }
 }

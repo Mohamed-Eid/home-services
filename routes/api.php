@@ -47,6 +47,7 @@ Route::group(
                 Route::get('profile','AgentController@profile')->middleware('authorizemember');
                 Route::post('update_profile','AgentController@update_profile')->middleware('authorizemember');;
                 Route::post('change_password','AgentController@change_password')->middleware('authorizemember');;
+                Route::get('get_by_services','AgentController@get_by_services');
             });
 
  
@@ -54,13 +55,12 @@ Route::group(
             Route::group(['prefix' => 'rate'], function () {
                 Route::post('' , 'RateController@rate')->middleware('authorizeclient');
             });
+            
 
             Route::get('banks' , 'BankController@index');
             Route::get('plans' , 'PlanController@index');
 
-            Route::get('categories' , 'CategoryController@index')->name('cats');
-            Route::get('categories/{category}' , 'CategoryController@products');
-            Route::get('categories/{category}/vendors' , 'CategoryController@vendors')->name('vendors_by_cat');
+            Route::get('categories' , 'CategoryController@index')->name('categories');
             
             Route::get('categories/{category}/services' , 'ServiceController@get_services_by_category');
 
